@@ -1,0 +1,376 @@
+---
+sidebar_position: 3
+title: "Initiating the payment Tabs"
+slug: "Initiating-the-payment-tabs"
+---
+
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Dropdown from '@site/src/components/Dropdown';
+import Highlight from '@site/src/components/Highlight';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+// import BrowserWindow from '@site/src/components/BrowserWindow';
+import CodeBlock from '@theme/CodeBlock';
+
+<Tabs>
+    <TabItem value="InitiatingThePayment" label="Initiating the payment" default>
+
+# Initiating the payment
+
+PayTabs provides you with a collection of API endpoints which used to process all payments, regardless of if they are through either your own payment pages, the managed payment pages, or if you are using the hosted payment pages.
+
+## Initiate the payment
+
+Hosted Payment Page integration type is suitable for merchants with PCI SAQ A or merchants does not have any PCI levels. To customize the UI of the hosted payment page, check this article, and to know more about the Hosted Payment Page PCI DSS merchant requirements, please check this article.
+
+<iframe width="100%" height="500px" src="https://www.youtube.com/embed/0uvdgweDx1U" title="INTEGRATIONS: Step 3 - Hosted Payment Page APIs | Initiating the payment (Required Parameters)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<br /><br />
+
+In this article, we will walk you through how to initiate a payment request via this integration type. You will be introduced to the required parameters that need to be passed to initiate the request, along with all the possible optional parameters as well. We highly recommend that you and your team check our "3.1.1 Hosted Payment Page | Payment Workflow" solution article first to understand the business/logic this integration type relay on.
+
+### The Endpoint and Related Postman Collection
+
+In this tutorial, we will rely on the PayTabs Hosted Payment Page API Endpoint, mentioned on PayTabs API endpoints postman collection, which you can access from here. The endpoint will need to be accessed with a POST request on the below-mentioned URL
+
+
+| **<span style={{color: 'var(--ifm-color-request-post)'}}>POST</span>** | \{\{domain\}\}payment/request |
+|----------|-------------------------------|
+
+:::caution
+<br/>
+Please note that not using the proper endpoint URI \{\{domain\}\} will lead to authentication issues within your responses. To find the your proper domain you can read our [What Is My (Region)/(endpoint URL)? solution article](https://support.paytabs.com/a/solutions/articles/60000718070?lang=en&portalId=60000014650).
+
+<Tabs>
+    <TabItem value="UAE" label="UAE" default>
+        ```
+        https://secure.paytabs.com/{{endpoint_uri}}
+        ```
+        For example: <b>https:<nolink/>//secure.paytabs.com/</b>payment/request
+    </TabItem>
+    <TabItem value="KSA" label="KSA">
+        ```
+        https://secure.paytabs.sa/{{endpoint_uri}}
+        ```
+        For example: <b>https<nolink/>://secure.paytabs.sa/</b>payment/request
+    </TabItem>
+
+    <TabItem value="Egypt" label="Egypt" >
+        ```
+        https://secure-egypt.paytabs.com/{{endpoint_uri}}
+        ```
+        For example: <b>https<nolink/>://secure-egypt.paytabs.com/</b>payment/request
+    </TabItem>
+    <TabItem value="Oman" label="Oman" >
+        ```
+        https://secure-oman.paytabs.com/{{endpoint_uri}}
+        ```
+        For example: <b>https<nolink/>://secure-oman.paytabs.com/</b>payment/request
+    </TabItem>
+    <TabItem value="Jordan" label="Jordan" >
+        ```
+        https://secure-jordan.paytabs.com/{{endpoint_uri}}
+        ```
+        For example: <b>https<nolink/>://secure-jordan.paytabs.com/</b>payment/request
+    </TabItem>
+    <TabItem value="Global" label="Global" >
+    ```
+    https://secure-global.paytabs.com/{{endpoint_uri}}
+    ```
+    For example: <b>https<nolink/>://secure-global.paytabs.com/</b>payment/request
+    </TabItem>
+</Tabs>
+
+:::
+
+### The Minimum Required Parameters
+To initiate a payment request using this integration type, there are minimum required parameters that need to be passed with valid information. The specification of these required parameters is clarified below:
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Data Type</th>
+    <th>Min</th>
+    <th>Max</th>
+    <th>Required</th>
+  </tr>
+  <tr>
+    <td rowspan="2"><CodeBlock>profile_id</CodeBlock></td>
+    <td style={{textAlign: 'center'}}><Highlight text="INT" color="var(--ifm-color-primary-darkest)"/></td>
+    <td colspan="2">Accept only valid profile number</td>
+    <td  style={{color: 'var(--ifm-color-primary-darkest)', textAlign: 'center'}} >&#x2714;</td>
+  </tr>
+  <tr>
+      <td colspan="4">
+          <span>The merchant Profile ID you can get from your PayTabs dashboard. For more information please check our How to get your account information from PT2 Dashboard? solution article.To know more about this parameter please click here.</span>
+          </td>
+      </tr>
+  <tr>
+    <td rowspan="2">
+        <CodeBlock>tran_type</CodeBlock>
+        </td>
+<td style={{textAlign: 'center'}}><Highlight text="STRING" color="var(--ifm-color-primary-darkest)"/></td>
+<td colspan="2"><p>Valid string from this enum list:</p> `sale` `auth` `void` `release` `capture` `refund` `register`</td>
+<td  style={{color: 'var(--ifm-color-primary-darkest)', textAlign: 'center'}} >&#x2714;</td>
+  </tr>
+  <tr><td colspan="4" style={{verticalAlign: 'top'}}>
+    <span>The merchant Profile ID you can get from your PayTavs dashboard. For more information please check our How to get your account information from PT2 Dashboard? solution article.To know more about this parameter please click here.</span>
+    </td></tr>
+<tr>
+    <td rowspan="2"><CodeBlock>tran_class</CodeBlock></td>
+<td style={{textAlign: 'center'}}><Highlight text="STRING" color="var(--ifm-color-primary-darkest)"/></td>
+<td colspan="2"><p>Valid string from this list</p> `ecom` `recurring` `moto`</td>
+<td  style={{color: 'var(--ifm-color-primary-darkest)', textAlign: 'center'}} >&#x2714;</td>
+  </tr>
+  <tr><td colspan="4" style={{verticalAlign: 'top'}}>
+<span>the identification of the category/class this transaction will follow, such as eCommerce, Recurring, etc. To know more about these types please check our What is the "tran_class" (transaction class)? solution article. To know more about this parameter please click here.</span>
+</td></tr>
+
+<tr>
+    <td rowspan="2"><CodeBlock>cart_id</CodeBlock></td>
+<td style={{textAlign: 'center'}}><Highlight text="STRING" color="var(--ifm-color-primary-darkest)"/></td>
+<td><center>1</center></td>
+<td><center>64</center></td>
+<td  style={{color: 'var(--ifm-color-primary-darkest)', textAlign: 'center'}} >&#x2714;</td>
+  </tr>
+  <tr><td colspan="4" style={{verticalAlign: 'top'}}>
+  <span> Indicates the cart/order id at the merchant end to easily relate the transaction to To know more about this parameter please click here.</span>
+  </td></tr>
+</table>
+
+<Tabs>
+    <TabItem value="RequestPayload" label="Sample Request Payload" default>
+```json
+{
+    "profile_id": "987###",
+    "tran_type": "sale",
+    "tran_class": "ecom",
+    "cart_id": "CART#1001",
+    "cart_currency": "AED",
+    "cart_amount": 500,
+    "cart_description": "Description of the items/services",
+}        
+```
+    </TabItem>
+
+<TabItem value="ResponsePayload" label="Sample Response Payload">
+```json
+{
+    "tran_ref": "TST22********159",
+    "tran_type": "Sale",
+    "cart_id": "CART#1001",
+    "cart_description": "Description of the items/services",
+    "cart_currency": "AED",
+    "cart_amount": "500.00",
+    "return": "none",
+    "redirect_url": "https://secure.paytabs.com/payment/page/599458B182E5B6B********************B4817FD44318539688688",
+    "serviceId": 2,
+    "profileId": 9*****4,
+    "merchantId": 1*****7,
+    "trace": "PMN****4.63****A8.00****C4"
+}
+```
+    </TabItem>
+</Tabs>
+
+### The Available Optional Parameters
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Data Type</th>
+    <th>Min</th>
+    <th>Max</th>
+    <th>Required</th>
+    <th>Required</th>
+  </tr>
+  <tr>
+    <td><CodeBlock>return</CodeBlock></td>
+<td style={{textAlign: 'center'}}><Highlight text="STRING" color="var(--ifm-color-primary-darkest)"/></td>
+<td><center>-</center></td>
+<td>255 Characters (Valid URL)</td>
+<td  style={{color: 'rgb(173 14 14)', textAlign: 'center'}} >❌</td>
+<td><span>The return URL is the URL that PayTabs will redirect the customer to after he finishes the payment process (whether it's authenticated or not). It will redirect the customer with a POST response that is sent with the client/cardholder redirection through his browser containing the basic transaction information once the payment process ends (whether the customer cancels, paid, or failed to pay). It depends on the customer's actions, which means if the customer closes the browser right after the payment without waiting to be redirected back to your system, you will not receive this response. What is the Return URL vs the Callback URL? To know more about this parameter please click here.</span> </td>
+  </tr>
+</table>
+
+<Tabs>
+    <TabItem value="RequestPayload" label="Sample Request Payload" default>
+```json
+{
+    "profile_id": **Your profile ID**,
+    "tran_type": "sale",
+    "tran_class": "ecom",
+    "cart_description": "Description of the items/services",
+    "cart_id": "Unique order reference00",
+    "cart_amount": 25000.2,
+    "cart_currency": "AED",
+    "paypage_lang": "en",
+    "return":"** Valid Return URL **",
+    "callback":"** Valid callback URL **",
+    "customer_details": {
+        "name": "FirstName LastName",
+        "email": "email1@domain.com",
+        "phone": "0522222222",
+        "street1": "address street",
+        "city": "City ISO-2",
+        "state": "state",
+        "country": "KSA",
+        "zip": "12345"
+    },
+    "shipping_details": {
+        "name": "FirstName LastName",
+        "email": "email1@domain.com",
+        "phone": "971555555555",
+        "street1": "street2",
+        "city": "City ISO-2",
+        "state": "state",
+        "country": "KSA",
+        "zip": "54321"
+    },
+    "user_defined": {
+        "test": "UDF1 Test",
+        "test2": "UDF2 Test",
+        "udf3": "UDF3 Test",
+        "udf4": "UDF4 Test",
+        "udf5": "UDF5 Test",
+        "udf6": "UDF6 Test",
+        "udf7": "UDF7 Test",
+        "udf8": "UDF8 Test",
+        "udf9": "UDF9 Test"
+    },
+    "card_discounts":[
+  {
+  "discount_cards" : "41111,520000",
+  "discount_amount" : "30.00",
+  "discount_percent" : "25",
+  "discount_title" : "30.00 AED and 25% discount on cards starts with 41111, 520000",
+  }
+],
+    "config_id": 2188,
+    "card_filter": "411111",
+    "card_filter_title": "Only accept cards start with 41111",
+    "tokenise": 2,
+    "show_save_card": true,
+    "hide_shipping":true,
+    "donation_mode":true,
+    "cart_min":5,
+    "cart_max":10,
+     "framed": true,
+    "framed_return_top": true,
+    "framed_return_parent": true
+}       
+```
+    </TabItem>
+
+<TabItem value="ResponsePayload" label="Sample Response Payload">
+```json
+{
+    "tran_ref": "TST223XXXXXXXXXX",
+    "tran_type": "Sale",
+    "cart_id": "Unique order reference00",
+    "cart_description": "Description of the items/services",
+    "cart_currency": "AED",
+    "cart_amount": "0.00",
+    "tran_currency": "",
+    "tran_total": "0",
+    "callback": "** callback URL **",
+    "return": "** return URL **",
+    "redirect_url": "https://secure-egypt.PayTabs.com/payment/page/595AXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "customer_details": {
+        "name": "first last",
+        "email": "email@domain.com",
+        "phone": "0522222222",
+        "street1": "address street",
+        "city": "City ISO-2",
+        "state": "state",
+        "country": "KSA",
+        "ip": "197.47.93.193"
+    },
+    "shipping_details": {
+        "name": "name1 last1",
+        "email": "email1@domain.com",
+        "phone": "971555555555",
+        "street1": "street2",
+        "city": "City ISO-2",
+        "state": "state",
+        "country": "KSA",
+    },
+    "serviceId": 2,
+    "profileId": 100181,
+    "merchantId": 46656,
+    "trace": "PMNT0403.63A99D49.0003A345"
+}
+```
+    </TabItem>
+</Tabs>
+
+### The Payment Page Experience
+
+As mentioned in [Payment Workflow](#payment-workflow), by creating the payment page, you will receive the redirect URL "redirect_url" within the response, which you will use to redirect your client to this payment page. Once you have redirected your client, the client browser will display the following page to the client.
+<div style={{textAlign: 'center'}} ></div>
+
+![The Payment Page Experience](@site/src/images/goN-2T3UbLXXyQQyDesh7wFk5KK0_hVxxw.png)
+
+### The Merchant Dashboard Page Experience
+
+When the client successfully completes the payment, on your dashboard, you will find the transaction details shown at <Highlight text="Home" color="var(--ifm-color-primary-lightest)"/> **>** <Highlight text="Transactions" color="var(--ifm-color-primary-lightest)"/> as shown below:
+
+![The Merchant Dashboard Page Experience](@site/src/images/7vBgRtbwmV0WwxHmMBIx6ZptZgcxqKlZTw.png)
+
+</TabItem>
+<TabItem value="APMs" label="APMs" default>
+    # APMs
+
+PayTabs provides you with a collection of API endpoints which used to process all payments, regardless of if they are through either your own payment pages, the managed payment pages, or if you are using the hosted payment pages.
+
+In this article, we will wake you through the APMs in PayTabs Hosted Payment Page and how can you get benefited from it.
+
+    ## What are APMs?
+
+    APM stands for alternative payment methods, unlike the usual payment method like card payment method (MasterCard, VISA, etc.)
+
+    ### Apple Pay
+    Apple Pay is a digital wallet and mobile payment service developed by Apple Inc. Users can add their credit or debit cards to the Apple Wallet app and make secure payments using their Apple devices. It supports contactless payments at participating retailers, in-app and online purchases, and person-to-person money transfers through Apple Cash. Apple Pay integrates with loyalty programs and offers a convenient and secure way to make payments, reducing the need for physical cards. To learn more about how you can integrate with Apple Pay through us, check our ApplePay payment method solution article article.
+
+
+    ### URPay
+    urpay is a digital wallet that offers you a variety of financial services and different payment methods that makes your life easier. The wallet has many capabilities such as local and international transfers and many other services.
+
+
+    ### STC Pay
+    STC Pay is a mobile wallet and digital payment service provided by Saudi Telecom Company (STC) in Saudi Arabia. Users can download the STC Pay app and create a digital wallet linked to their mobile phone number. It allows for peer-to-peer payments, bill payments, merchant payments through QR codes, domestic and international money transfers, and cash withdrawals. STC Pay has facilitated the growth of digital payments in Saudi Arabia, providing users with a secure and convenient platform to manage their financial transactions using their mobile devices.
+
+
+
+    ### Meeza Wallet
+    Meeza Wallet is a mobile wallet and digital payment service provided by the National Payments Council in Egypt. Users can download the Meeza Wallet app and create a digital wallet linked to their mobile phone number. It allows for fund loading, peer-to-peer payments, bill payments, merchant payments through QR codes, and cash withdrawals. Meeza Wallet promotes financial inclusion and facilitates digital transactions, providing a secure and accessible payment solution for individuals in Egypt.
+
+
+    ### Sadad
+    Sadad is an electronic payment system in Saudi Arabia that offers a centralized platform for secure and convenient online payments. It enables users to pay bills, settle government fees, make financial transactions with participating banks, and make online purchases. Sadad has simplified payment processes, promoting the growth of e-commerce and digital financial services in Saudi Arabia while providing a trusted and efficient payment solution for individuals and businesses.
+
+
+    ### RuPay
+    RuPay is a domestic payment card scheme in India operated by the National Payments Corporation of India (NPCI). It offers debit, credit, and prepaid cards that are widely accepted across the country. With a focus on domestic transactions, RuPay aims to promote financial inclusion and reduce dependence on international card networks. It provides cost-effective options for banks and merchants, offers interoperability with other card networks, and integrates with government programs. RuPay has significantly contributed to the growth of digital payments in India, providing a reliable and accessible payment solution for individuals and businesses within the country.
+
+
+    ### Aman
+    AMAN For E-Payments A subsidiary of Raya Holding, AMAN is a young Egyptian FINTECH company that aspires to become the leading FINTECH Company in the region, and envisions an ultimate Egyptian cashless society with full financial inclusion for previously unattainable to masses of Egyptians.
+
+
+    ### NBE Installment
+    NBE Installment is a buy-now-pay-later service provided by the National Bank of Egypt allowing customers to make purchases at participating merchants and pay in installments. It provides flexible payment options, instant financing decisions, and a wide network of partner merchants.
+
+
+    ### PayPal
+    PayPal is a widely used online payment system that allows individuals and businesses to make secure electronic transactions. Users create an account, link it to their bank account or cards, and can then send and receive payments. It supports international transactions, provides buyer and seller protection, and offers various services for businesses. PayPal's mobile app enables convenient management of accounts and transactions. Overall, PayPal has become a trusted and popular method for making online payments, facilitating e-commerce and global money transfers.
+
+
+    ### ADCB Touchpoints
+    ADCB Touchpoints is a loyalty program offered by Abu Dhabi Commercial Bank (ADCB) in the United Arab Emirates. Customers earn Touchpoints by using their ADCB credit or debit cards for various transactions. These points can be redeemed for rewards such as travel bookings, hotel stays, shopping vouchers, and more. ADCB often partners with retailers and service providers to offer exclusive benefits and accelerated earning opportunities. Customers can conveniently redeem their Touchpoints online through the ADCB website or mobile app. The program enhances the banking experience by providing rewards and incentives for ADCB customers, making it an attractive option for those seeking additional value from their banking relationship.
+
+
+    ### valU
+    valU is a buy-now-pay-later platform offered by EFG Hermes, allowing customers to make purchases at participating merchants and pay in installments. It provides flexible payment options, instant financing decisions, and a wide network of partner merchants. valU offers interest-free installment plans in some cases and has a mobile app for convenient account management. As a subsidiary of EFG Hermes, valU leverages the financial expertise of the corporation to deliver customer-centric financing solutions. Overall, valU aims to enhance the shopping experience by providing customers with greater financial flexibility and convenience through its buy-now-pay-later service.
+    </TabItem>
+</Tabs>

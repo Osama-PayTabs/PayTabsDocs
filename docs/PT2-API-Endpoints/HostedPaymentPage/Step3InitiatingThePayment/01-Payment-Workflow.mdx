@@ -1,0 +1,31 @@
+---
+sidebar_position: 1
+title: "Payment Workflow"
+slug: "payment-workflow"
+---
+
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Dropdown from '@site/src/components/Dropdown';
+import Highlight from '@site/src/components/Highlight';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+// import BrowserWindow from '@site/src/components/BrowserWindow';
+import CodeBlock from '@theme/CodeBlock';
+
+## Payment Workflow
+
+PayTabs provides you with a collection of API endpoints which used to process all payments, regardless of if they are through either your own payment pages, the managed payment pages, or if you are using the hosted payment pages.
+
+<iframe width="100%" height="500" src="https://www.youtube.com/embed/Q8DQf41aCK8" title="INTEGRATIONS: Step 3 - Hosted Payment Page APIs | Initiating the payment | Payment Workflow" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+Hosted Payment Page integration type is suitable for merchants with PCI SAQ A or merchants does not have any PCI levels. To customize the UI of the hosted payment page, check this article, and to know more about the Hosted Payment Page PCI DSS merchant requirements, please check this article.
+
+In this article, we will wake you through the payment workflow for PayTabs Hosted Payment Page.
+
+1. The Hosted Payment page uses a Transaction API request which will return a response with a payment page link.
+
+2. The merchant should navigate/redirect the customers to this previous payment page link, which he will have its URL in the response; in order to complete the payment.
+
+3. Once the payment is completed, PayTabs will redirect the customer back to the merchant’s website, to the return URL that the merchant specified in the API request, and the payment results will be posted to that URL
+
+![Payment Workflow](@site/src/images/EIXK6LHamiebPxFQlv587jcXU7ME0G-ceg.png)
