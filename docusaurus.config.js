@@ -33,7 +33,7 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
+  plugins: [require.resolve("docusaurus-plugin-image-zoom"), require.resolve("@easyops-cn/docusaurus-search-local")],
   presets: [
     [
       'classic',
@@ -136,6 +136,15 @@ const config = {
         darkTheme: prismThemes.dracula,
         additionalLanguages: ['php','json','tsx']
       },
+      zoom: {
+        selector: '.markdown :not(em) > img',
+        config: {
+        },
+        background: {
+          light: 'rgb(255, 255, 255)',
+          dark: 'rgb(50, 50, 50)'
+        }
+      }
     }),
 };
 

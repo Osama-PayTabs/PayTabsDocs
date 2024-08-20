@@ -32,3 +32,17 @@
   --ifm-color-request-post: #fcba03;
   --ifm-color-white: #ffffff;
 }
+
+.two-row tr:nth-of-type(odd) td,.two-row td:first-child[rowspan] {
+  border-bottom: solid 2px var(--ifm-color-primary);
+  -webkit-box-shadow: 0px 5px 23px -17px rgba(0,0,0,0.67);
+  -moz-box-shadow: 0px 5px 23px -17px rgba(0,0,0,0.67);
+  box-shadow: 0px 5px 23px -17px rgba(0,0,0,0.67);
+}
+
+.three-row tr:nth-child(4n),.three-row td:first-child[rowspan] {
+  border-bottom: solid 2px #000000;
+  -webkit-box-shadow: 0px 5px 23px -17px rgba(0,0,0,0.67);
+  -moz-box-shadow: 0px 5px 23px -17px rgba(0,0,0,0.67);
+  box-shadow: 0px 5px 23px -17px rgba(0,0,0,0.67);
+}
