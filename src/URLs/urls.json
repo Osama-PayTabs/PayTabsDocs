@@ -1,15 +1,58 @@
 {
-    "what-is-my-region": "https://support.paytabs.com/en/support/solutions/articles/60000718070-what-is-my-region-endpoint-url-",
-    "seven-steps-process": "https://support.paytabs.com/en/support/solutions/articles/60000719197-paytabs-integrations-process-manual",
-    "what-is-pci": "https://support.paytabs.com/en/support/solutions/articles/60000709976-what-is-pci-dss-and-what-are-the-merchant-requirements-",
-    "why-paytabs-need-pci": "https://support.paytabs.com/en/support/solutions/articles/60000691825-why-does-paytabs-need-pci-certification-for-using-payment-forms-",
-    "how-to-embed-payment-page":"https://support.paytabs.com/en/support/solutions/articles/60000712256-how-to-not-redirect-my-customers-to-an-external-payment-page-iframe-embedded-mode-",
-    "how-to-customeize-payment-page":"https://support.paytabs.com/en/support/solutions/articles/60000712216-how-to-customize-the-paypage-hosted-payment-page-ui-",
-    "paytabs-site":"https://site.paytabs.com/en/",
-    "curl-site":"https://curl.se/",
-    "postman-site":"https://www.postman.com/",
-    "paytabs-apis-postman-collection":"https://documenter.getpostman.com/view/14575178/TWDRtfWG#419a02a3-ecc4-4e56-b832-eb380d40a9c2",
-    "how-to-find-my-keys": "https://support.paytabs.com/en/support/solutions/articles/60000709801-how-to-get-my-authentication-integration-api-keys-",
-    "how-to-find-mid": "https://support.paytabs.com/en/support/solutions/articles/60000699328-how-to-get-your-account-information-from-pt2-dashboard-",
-    "test-vs-live": "https://support.paytabs.com/en/support/solutions/articles/60000710008-what-is-test-profile-vs-live-profile-"
+    "what_is_my_region": {
+        "link" : "https://support.paytabs.com/en/support/solutions/articles/60000718070-what-is-my-region-endpoint-url-",
+        "title": "What is my (Region)/(endpoint URL)?"
+    },
+    "seven_steps_process": {
+        "link" : "https://support.paytabs.com/en/support/solutions/articles/60000719197-paytabs-integrations-process-manual",
+        "title": "PayTabs Integrations Process Manual"
+    },
+    "what_is_pci": {
+        "link" : "https://support.paytabs.com/en/support/solutions/articles/60000709976-what-is-pci-dss-and-what-are-the-merchant-requirements-",
+        "title": "What is PCI DSS? and What are the Merchant Requirements?"
+    },
+    "why_paytabs_need_pci": {
+        "link" : "https://support.paytabs.com/en/support/solutions/articles/60000691825-why-does-paytabs-need-pci-certification-for-using-payment-forms-",
+        "title": "Why Does PayTabs Need PCI Certification For Using Payment Forms?"
+    },
+    "how_to_embed_payment_page": {
+        "link" : "https://support.paytabs.com/en/support/solutions/articles/60000712256-how-to-not-redirect-my-customers-to-an-external-payment-page-iframe-embedded-mode-",
+        "title": "How to not redirect my customers to an external payment page? (iFrame/Embedded Mode)"
+    },
+    "how_to_customeize_payment_page": {
+        "link" : "https://support.paytabs.com/en/support/solutions/articles/60000712216-how-to-customize-the-paypage-hosted-payment-page-ui-",
+        "title": "How to customize the PayPage (Hosted Payment Page) UI?"
+    },
+    "paytabs_site": {
+        "link" : "https://site.paytabs.com/",
+        "title": "PayTabs website"
+    },
+    "curl_site": {
+        "link" : "https://curl.se/",
+        "title": "curl site"
+    },
+    "postman_site": {
+        "link" : "https://www.postman.com/",
+        "title": "Postman"
+    },
+    "paytabs-apis-postman-collection": {
+        "link" : "https://documenter.getpostman.com/view/14575178/TWDRtfWG#419a02a3-ecc4-4e56-b832-eb380d40a9c2",
+        "title": "PayTabs Postman APIs Collection"
+    },
+    "how_to_find_my_keys": {
+        "link" : "https://support.paytabs.com/en/support/solutions/articles/60000709801-how-to-get-my-authentication-integration-api-keys-",
+        "title": "How to get my Authentication/Integration/API Keys?"
+    },
+    "how-to-find-mid": {
+        "link" : "https://support.paytabs.com/en/support/solutions/articles/60000699328-how-to-get-your-account-information-from-pt2-dashboard-",
+        "title": "How to get your account information from PT2 Dashboard?"
+    },
+    "test-vs-live": {
+        "link" : "https://support.paytabs.com/en/support/solutions/articles/60000710008-what-is-test-profile-vs-live-profile-",
+        "title": "What is Test Profile vs Live Profile?"
+    },
+    "What_tran_type": {
+        "link" : "https://support.paytabs.com/en/support/solutions/articles/60000711310-what-is-the-tran-type-transaction-type-",
+        "title": "What is the \"tran_type\" (transaction type)?"
+    }
   }

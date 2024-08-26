@@ -4,14 +4,18 @@ title: "Initiating the payment"
 slug: "Initiating-the-payment"
 ---
 
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Dropdown from '@site/src/components/Dropdown';
-import Highlight from '@site/src/components/Highlight';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import Dropdown from "@site/src/components/Dropdown";
+import Highlight from "@site/src/components/Highlight";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 // import BrowserWindow from '@site/src/components/BrowserWindow';
-import CodeBlock from '@theme/CodeBlock';
+import CodeBlock from "@theme/CodeBlock";
+import urls from "@site/src/URLs/urls.json";
+import Link from "@docusaurus/Link";
+import MainParagraph from "@site/src/components/MainParagraph";
 
+<MainParagraph />
 
 # Initiating the payment
 
@@ -21,9 +25,19 @@ PayTabs provides you with a collection of API endpoints which used to process al
 
 Hosted Payment Page integration type is suitable for merchants with PCI SAQ A or merchants does not have any PCI levels. To customize the UI of the hosted payment page, check this article, and to know more about the Hosted Payment Page PCI DSS merchant requirements, please check this article.
 
-<iframe width="100%" height="500px" src="https://www.youtube.com/embed/0uvdgweDx1U" title="INTEGRATIONS: Step 3 - Hosted Payment Page APIs | Initiating the payment (Required Parameters)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe
+  width="100%"
+  height="500px"
+  src="https://www.youtube.com/embed/0uvdgweDx1U"
+  title="INTEGRATIONS: Step 3 - Hosted Payment Page APIs | Initiating the payment (Required Parameters)"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
 
-<br /><br />
+<br />
+<br />
 
 In this article, we will walk you through how to initiate a payment request via this integration type. You will be introduced to the required parameters that need to be passed to initiate the request, along with all the possible optional parameters as well. We highly recommend that you and your team check our "3.1.1 Hosted Payment Page | Payment Workflow" solution article first to understand the business/logic this integration type relay on.
 
@@ -31,13 +45,13 @@ In this article, we will walk you through how to initiate a payment request via 
 
 In this tutorial, we will rely on the PayTabs Hosted Payment Page API Endpoint, mentioned on PayTabs API endpoints postman collection, which you can access from here. The endpoint will need to be accessed with a POST request on the below-mentioned URL
 
-
 | **<span style={{color: 'var(--ifm-color-request-post)'}}>POST</span>** | \{\{domain\}\}payment/request |
-|----------|-------------------------------|
+| ---------------------------------------------------------------------- | ----------------------------- |
 
 :::caution
+
 <br/>
-Please note that not using the proper endpoint URI \{\{domain\}\} will lead to authentication issues within your responses. To find the your proper domain you can read our [What Is My (Region)/(endpoint URL)? solution article](https://support.paytabs.com/a/solutions/articles/60000718070?lang=en&portalId=60000014650).
+Please note that not using the proper endpoint URI \{\{domain\}\} will lead to authentication issues within your responses. To find the your proper domain you can read our <Link to={urls['what_is_my_region']['link']} >{urls['what_is_my_region']['title']}</Link> solution article.
 
 <Tabs>
     <TabItem value="UAE" label="UAE" default>
@@ -78,11 +92,13 @@ Please note that not using the proper endpoint URI \{\{domain\}\} will lead to a
     For example: <b>https
         <nolink/>://secure-global.paytabs.com/</b>payment/request
     </TabItem>
+
 </Tabs>
 
 :::
 
 ### The Minimum Required Parameters
+
 To initiate a payment request using this integration type, there are minimum required parameters that need to be passed with valid information. The specification of these required parameters is clarified below:
 
 <table class="two-row">
@@ -94,7 +110,7 @@ To initiate a payment request using this integration type, there are minimum req
     <th>Required</th>
   </tr>
   <tr>
-    <td rowspan="2"><CodeBlock>profile_id</CodeBlock></td>
+    <td rowspan="2"><CodeBlock link={"https://google.com"}>profile_id</CodeBlock></td>
     <td style={{textAlign: 'center'}}><Highlight text="INT" color="var(--ifm-color-primary-darkest)"/></td>
     <td colspan="2">Accept only valid profile number</td>
     <td  style={{color: 'var(--ifm-color-primary-darkest)', textAlign: 'center'}} >&#x2714;</td>
@@ -173,6 +189,7 @@ To initiate a payment request using this integration type, there are minimum req
 </Tabs>
 
 ### The Available Optional Parameters
+
 <table class="three-row">
   <tr>
     <th>Parameter</th>
@@ -203,7 +220,7 @@ To initiate a payment request using this integration type, there are minimum req
                 </td>
             </tr>
         <tr>
-            <td rowspan="3"><CodeBlock>callback</CodeBlock></td>
+            <td rowspan="3"><CodeBlock link="/yahoo.com">callback</CodeBlock></td>
         <td style={{textAlign: 'center'}}><Highlight text="STRING" color="var(--ifm-color-primary-darkest)"/></td>
         <td><center>-</center></td>
         <td>255 Characters (Valid URL)</td>
@@ -339,7 +356,8 @@ To initiate a payment request using this integration type, there are minimum req
 ### The Payment Page Experience
 
 As mentioned in [Payment Workflow](#payment-workflow), by creating the payment page, you will receive the redirect URL "redirect_url" within the response, which you will use to redirect your client to this payment page. Once you have redirected your client, the client browser will display the following page to the client.
-<div style={{textAlign: 'center'}} ></div>
+
+<div style={{ textAlign: "center" }}></div>
 
 ![The Payment Page Experience](@site/src/images/goN-2T3UbLXXyQQyDesh7wFk5KK0_hVxxw.png)
 

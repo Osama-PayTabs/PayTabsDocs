@@ -1,12 +1,16 @@
-import React, {useCallback, useState, useRef, useEffect} from 'react';
-import clsx from 'clsx';
-import copy from 'copy-text-to-clipboard';
-import {translate} from '@docusaurus/Translate';
-import type {Props} from '@theme/CodeBlock/LinkButton';
-import styles from './styles.module.css';
+import React, { useCallback, useState, useRef, useEffect } from "react";
+import clsx from "clsx";
+import copy from "copy-text-to-clipboard";
+import { translate } from "@docusaurus/Translate";
+import type { Props } from "@theme/CodeBlock/LinkButton";
+import styles from "./styles.module.css";
 import IconExternalLink from "@theme/Icon/ExternalLink";
+import Link from "@docusaurus/Link";
 
-export default function LinkButton({code, className}: Props): JSX.Element {
+export default function LinkButton(
+  { code, className, link },
+  props: Props
+): JSX.Element {
   const [isCopied, setIsCopied] = useState(false);
   const copyTimeout = useRef<number | undefined>(undefined);
   const handleCopyCode = useCallback(() => {
@@ -18,37 +22,39 @@ export default function LinkButton({code, className}: Props): JSX.Element {
   }, [code]);
 
   useEffect(() => () => window.clearTimeout(copyTimeout.current), []);
-
   return (
     <button
       type="button"
       aria-label={
         isCopied
           ? translate({
-              id: 'theme.CodeBlock.copied',
-              message: 'Copied',
-              description: 'The copied button label on code blocks',
+              id: "theme.CodeBlock.copied",
+              message: "Copied",
+              description: "The copied button label on code blocks",
             })
           : translate({
-              id: 'theme.CodeBlock.LinkButtonAriaLabel',
-              message: 'Copy code to clipboard',
-              description: 'The ARIA label for copy code blocks button',
+              id: "theme.CodeBlock.LinkButtonAriaLabel",
+              message: "Copy code to clipboard",
+              description: "The ARIA label for copy code blocks button",
             })
       }
       title={translate({
-        id: 'theme.CodeBlock.copy',
-        message: 'Copy',
-        description: 'The copy button label on code blocks',
+        id: "theme.CodeBlock.copy",
+        message: "Copy",
+        description: "The copy button label on code blocks",
       })}
       className={clsx(
-        'clean-btn',
+        "clean-btn",
         className,
         styles.LinkButton,
-        isCopied && styles.LinkButtonCopied,
+        isCopied && styles.LinkButtonCopied
       )}
-      onClick={handleCopyCode}>
+      onClick={handleCopyCode}
+    >
       <span className={styles.LinkButtonIcons} aria-hidden="true">
-        <IconExternalLink className={styles.LinkButtonIcon} />
+        <Link to={link}>
+          <IconExternalLink className={styles.LinkButtonIcon} />
+        </Link>
       </span>
     </button>
   );
