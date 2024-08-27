@@ -6,6 +6,11 @@ slug: "Initiating-the-payment"
 
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Dropdown from "@site/src/components/Dropdown";
+import RequiredParameters from "@site/src/components/PT2APIs/RequiredParameters";
+import OptionalParameters from "@site/src/components/PT2APIs/OptionalParameters";
+import Layout_1_2_SystemRequirements from "@site/src/layouts/PT2APIs/Layout_1_2_SystemRequirements";
+
+
 import Highlight from "@site/src/components/Highlight";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -14,6 +19,7 @@ import CodeBlock from "@theme/CodeBlock";
 import urls from "@site/src/URLs/urls.json";
 import Link from "@docusaurus/Link";
 import MainParagraph from "@site/src/components/MainParagraph";
+import RegionCautionNote from "@site/src/components/PT2APIs/RegionCautionNote";
 
 <MainParagraph />
 
@@ -48,110 +54,13 @@ In this tutorial, we will rely on the PayTabs Hosted Payment Page API Endpoint, 
 | **<span style={{color: 'var(--ifm-color-request-post)'}}>POST</span>** | \{\{domain\}\}payment/request |
 | ---------------------------------------------------------------------- | ----------------------------- |
 
-:::caution
-
-<br/>
-Please note that not using the proper endpoint URI \{\{domain\}\} will lead to authentication issues within your responses. To find the your proper domain you can read our <Link to={urls['what_is_my_region']['link']} >{urls['what_is_my_region']['title']}</Link> solution article.
-
-<Tabs>
-    <TabItem value="UAE" label="UAE" default>
-        ```
-        https://secure.paytabs.com/{{endpoint_uri}}
-        ```
-        For example: <b>https:<nolink/>//secure.paytabs.com/</b>payment/request
-    </TabItem>
-    <TabItem value="KSA" label="KSA">
-        ```
-        https://secure.paytabs.sa/{{endpoint_uri}}
-        ```
-        For example: <b>https<nolink/>://secure.paytabs.sa/</b>payment/request
-    </TabItem>
-
-    <TabItem value="Egypt" label="Egypt" >
-        ```
-        https://secure-egypt.paytabs.com/{{endpoint_uri}}
-        ```
-        For example: <b>https<nolink/>://secure-egypt.paytabs.com/</b>payment/request
-    </TabItem>
-    <TabItem value="Oman" label="Oman" >
-        ```
-        https://secure-oman.paytabs.com/{{endpoint_uri}}
-        ```
-        For example: <b>https<nolink/>://secure-oman.paytabs.com/</b>payment/request
-    </TabItem>
-    <TabItem value="Jordan" label="Jordan" >
-        ```
-        https://secure-jordan.paytabs.com/{{endpoint_uri}}
-        ```
-        For example: <b>https<nolink/>://secure-jordan.paytabs.com/</b>payment/request
-    </TabItem>
-    <TabItem value="Global" label="Global" >
-    ```
-    https://secure-global.paytabs.com/{{endpoint_uri}}
-    ```
-    For example: <b>https
-        <nolink/>://secure-global.paytabs.com/</b>payment/request
-    </TabItem>
-
-</Tabs>
-
-:::
+<RegionCautionNote />
 
 ### The Minimum Required Parameters
 
 To initiate a payment request using this integration type, there are minimum required parameters that need to be passed with valid information. The specification of these required parameters is clarified below:
 
-<table class="two-row">
-  <tr>
-    <th>Parameter</th>
-    <th>Data Type</th>
-    <th>Min</th>
-    <th>Max</th>
-    <th>Required</th>
-  </tr>
-  <tr>
-    <td rowspan="2"><CodeBlock link={"https://google.com"}>profile_id</CodeBlock></td>
-    <td style={{textAlign: 'center'}}><Highlight text="INT" color="var(--ifm-color-primary-darkest)"/></td>
-    <td colspan="2">Accept only valid profile number</td>
-    <td  style={{color: 'var(--ifm-color-primary-darkest)', textAlign: 'center'}} >&#x2714;</td>
-  </tr>
-  <tr>
-      <td colspan="4">
-          <span>The merchant Profile ID you can get from your PayTabs dashboard. For more information please check our How to get your account information from PT2 Dashboard? solution article.To know more about this parameter please click here.</span>
-          </td>
-      </tr>
-  <tr>
-    <td rowspan="2">
-        <CodeBlock>tran_type</CodeBlock>
-        </td>
-<td style={{textAlign: 'center'}}><Highlight text="STRING" color="var(--ifm-color-primary-darkest)"/></td>
-<td colspan="2"><p>Valid string from this enum list:</p> `sale` `auth` `void` `release` `capture` `refund` `register`</td>
-<td  style={{color: 'var(--ifm-color-primary-darkest)', textAlign: 'center'}} >&#x2714;</td>
-  </tr>
-  <tr><td colspan="4" style={{verticalAlign: 'top'}}>
-    <span>The merchant Profile ID you can get from your PayTavs dashboard. For more information please check our How to get your account information from PT2 Dashboard? solution article.To know more about this parameter please click here.</span>
-    </td></tr>
-<tr>
-    <td rowspan="2"><CodeBlock>tran_class</CodeBlock></td>
-<td style={{textAlign: 'center'}}><Highlight text="STRING" color="var(--ifm-color-primary-darkest)"/></td>
-<td colspan="2"><p>Valid string from this list</p> `ecom` `recurring` `moto`</td>
-<td  style={{color: 'var(--ifm-color-primary-darkest)', textAlign: 'center'}} >&#x2714;</td>
-  </tr>
-  <tr><td colspan="4" style={{verticalAlign: 'top'}}>
-<span>the identification of the category/class this transaction will follow, such as eCommerce, Recurring, etc. To know more about these types please check our What is the "tran_class" (transaction class)? solution article. To know more about this parameter please click here.</span>
-</td></tr>
-
-<tr>
-    <td rowspan="2"><CodeBlock>cart_id</CodeBlock></td>
-<td style={{textAlign: 'center'}}><Highlight text="STRING" color="var(--ifm-color-primary-darkest)"/></td>
-<td><center>1</center></td>
-<td><center>64</center></td>
-<td  style={{color: 'var(--ifm-color-primary-darkest)', textAlign: 'center'}} >&#x2714;</td>
-  </tr>
-  <tr><td colspan="4" style={{verticalAlign: 'top'}}>
-  <span> Indicates the cart/order id at the merchant end to easily relate the transaction to To know more about this parameter please click here.</span>
-  </td></tr>
-</table>
+<RequiredParameters />
 
 <Tabs>
     <TabItem value="RequestPayload" label="Sample Request Payload" default>
@@ -190,57 +99,7 @@ To initiate a payment request using this integration type, there are minimum req
 
 ### The Available Optional Parameters
 
-<table class="three-row">
-  <tr>
-    <th>Parameter</th>
-    <th>Data Type</th>
-    <th>Min</th>
-    <th>Max</th>
-    <th>Required</th>
-  </tr>
-  <tr>
-    <td rowspan="3"><CodeBlock>return</CodeBlock></td>
-<td style={{textAlign: 'center'}}><Highlight text="STRING" color="var(--ifm-color-primary-darkest)"/></td>
-<td><center>-</center></td>
-<td>255 Characters (Valid URL)</td>
-<td style={{color: 'rgb(173 14 14)', textAlign: 'center'}} >❌</td>
-  </tr>
-  <tr>
-        <td colspan="4">
-            <span>The return URL is the URL that PayTabs will redirect the customer to after he finishes the payment process (whether it's authenticated or not). It will redirect the customer with a POST response that is sent with the client/cardholder redirection through his browser containing the basic transaction information once the payment process ends (whether the customer cancels, paid, or failed to pay). It depends on the customer's actions, which means if the customer closes the browser right after the payment without waiting to be redirected back to your system, you will not receive this response. What is the Return URL vs the Callback URL? To know more about this parameter please click here.</span>
-            </td>
-        </tr>
-    <tr>
-            <td colspan="4">
-                ``` json
-                {
-                    "return": "https://example.com/order/10001"
-                }
-                ````
-                </td>
-            </tr>
-        <tr>
-            <td rowspan="3"><CodeBlock link="/yahoo.com">callback</CodeBlock></td>
-        <td style={{textAlign: 'center'}}><Highlight text="STRING" color="var(--ifm-color-primary-darkest)"/></td>
-        <td><center>-</center></td>
-        <td>255 Characters (Valid URL)</td>
-        <td style={{color: 'rgb(173 14 14)', textAlign: 'center'}} >❌</td>
-          </tr>
-          <tr>
-                <td colspan="4">
-                    <span>The callback response is a server-to-server POST response that is sent (to a pre-defined HTTPS URL) with the full detailed transaction information once the payment process has ended (whether the customer cancels, paid, or failed to pay). It does not depend on the customer's actions; the response will be sent anyway. </span>
-                    </td>
-                </tr>
-            <tr>
-                    <td colspan="4">
-                        ``` json
-                        {
-                            "callback": "https://www.example.com/notifications"
-                        }
-                        ````
-                        </td>
-                    </tr>
-</table>
+<OptionalParameters />
 
 <Tabs>
     <TabItem value="RequestPayload" label="Sample Request Payload" default>

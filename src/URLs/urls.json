@@ -54,5 +54,13 @@
     "What_tran_type": {
         "link" : "https://support.paytabs.com/en/support/solutions/articles/60000711310-what-is-the-tran-type-transaction-type-",
         "title": "What is the \"tran_type\" (transaction type)?"
+    },
+    "What_tran_class": {
+        "link" : "https://support.paytabs.com/en/support/solutions/articles/60000711330-what-is-the-tran-class-transaction-class-",
+        "title": "What is the \"tran_class\" (transaction class)?"
+    },
+    "Return_URL_vs_Callback_URL": {
+        "link" : "https://support.paytabs.com/en/support/solutions/articles/60000681959-what-is-the-return-url-vs-the-callback-url-",
+        "title": "What is the Return URL vs the Callback URL?"
     }
   }

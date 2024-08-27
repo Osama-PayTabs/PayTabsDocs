@@ -40,7 +40,7 @@
   box-shadow: 0px 5px 23px -17px rgba(0,0,0,0.67);
 }
 
-.three-row tr:nth-child(4n),.three-row td:first-child[rowspan] {
+.three-row tr:nth-child(3n+1):not(:first-child) {
   border-bottom: solid 2px #000000;
   -webkit-box-shadow: 0px 5px 23px -17px rgba(0,0,0,0.67);
   -moz-box-shadow: 0px 5px 23px -17px rgba(0,0,0,0.67);
